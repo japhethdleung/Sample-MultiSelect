@@ -1,0 +1,54 @@
+﻿@model Sample_MultiSelect.Data.Team
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name Details</h2>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+@if (Model.Players.Count > 0)
+{
+    <h4>Assigned Players</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Players.GetEnumerator().Current.Name)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var player in Model.Players)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => player.Name)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-warning">No players assigned to the @Model.Name</p>
+}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TeamId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

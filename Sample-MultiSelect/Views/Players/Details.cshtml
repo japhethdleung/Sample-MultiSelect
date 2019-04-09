@@ -1,0 +1,32 @@
+﻿@model Sample_MultiSelect.Data.Player
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name's Details</h2>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Teams)
+        </dt>
+        @if (Model.Teams.Count > 0)
+        {
+            foreach (var team in Model.Teams)
+            {
+                <dd>
+                    @Html.DisplayFor(model => team.Name)
+                </dd>
+            }
+        }
+        else
+        {
+            <dd class="text-warning">No teams assigned to @Model.Name.</dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlayerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
